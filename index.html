@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+
+<body>
+	<p> demo 1-doubled number provided in an array</p>
+	<p id="demonstration1"></p>
+
+	<p> demo 2-splits a given string by spaces</p>
+	<p id="demonstration2"></p>
+
+	<p> demo 3-sends messege to screen after 3 seconds</p>
+	<button onclick="setTimeout(alerter, 3000);">messege in 3 seconds.</button>
+
+  <p> demo 4-asserts 1 or 0 has been entered</p>
+  <input id="number">
+  <button type="button" onclick="asserter()">Submit</button>
+
+  <p> demo 5-prints names in an easily manipuated fasion</p>
+  <p id="demonstration5"></p>
+
+	<script>
+    //-------------------------------------------------------------------------
+    //demo1
+		var nums = [40, 50, 77, 25, 108];
+    var resultArray = nums.map(doubler)
+    //array that holds the results
+
+    function doubler(num) {
+      return num * 2;
+    }
+    //what action is to be applied to the values
+
+    document.getElementById("demonstration1").innerHTML = resultArray;
+    //-------------------------------------------------------------------------
+    //demo2
+      var str = "String for testing the string split function";
+      var res = str.split(" ", 5);
+      document.getElementById("demonstration2").innerHTML = res;
+
+    //-------------------------------------------------------------------------
+    //demo 3
+    function alerter() {
+      alert('3 seconds have passed');
+    }
+    //-------------------------------------------------------------------------
+    //demo 4
+    function asserter() {
+    var x = document.getElementById("number").value,
+    messege = 'input is not either 0 or 1.';
+    console.assert(x == 0 || x == 1, {number: x, errorMsg:messege});
+    }
+    //-------------------------------------------------------------------------
+    //demo 5
+
+    var names1 = {
+      name_first : "bill",
+      name_last : "smith"
+    }
+
+    function name_printer(){
+      document.getElementById("demonstration5").innerHTML =
+      this.name_first + " " + this.name_last;
+    }
+
+    var names = name_printer.bind(names1);//names is name printer with names1 bounded to it
+    names();
+  </script>
+
+</body>
+
+</html>
