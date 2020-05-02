@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+
+<body>
+	<p> Student information</p>
+	<p id="identity_printer"></p>
+
+  <p> Student's grade</p>
+  <p id="grade_printer"></p>
+
+    <p> Student's teachers</p>
+  <p id="teacher_printer"></p>
+
+	<script>
+//-------------------------------------------------------------------------
+var myJSON = '{"name_first":"John", "name_last":"dingo","id":"2323434", "grade1":90,"grade2":80,"grade3":70, "teachers": ["bob","mint","chair"] }';
+var myObj = JSON.parse(myJSON);//convert to jscript objct
+
+    function name_printer(){
+      document.getElementById("identity_printer").innerHTML =
+      "<br> FN: "+this.name_first + "<br> LN: " + this.name_last + "<br> id: "+this.id;
+    }
+    function grade_calc(){
+      document.getElementById("grade_printer").innerHTML =
+      "grade: "+ (letter_grade(this.grade1 , this.grade2 , this.grade3));
+
+    }
+    function teacher_print(){
+      document.getElementById("teacher_printer").innerHTML =
+      "teachers: " + string_array_display(this.teachers);
+    }
+
+//takes an array of string and combines them into one big string
+    function string_array_display(string_array){
+      x="";
+      for (i in string_array){
+        x += string_array[i] + " ";
+      }
+      return x;
+    }
+//takes 3 numbers and outputs the equivilent letter grade of the average
+    function letter_grade(grade1, grade2, grade3){
+
+      avrg=(grade1+grade2+grade3)/3;
+
+      if (avrg >= 90) return "A";
+
+      else if (avrg >= 80) return "B";
+
+      else if (avrg >= 70) return "C";
+
+      else return  "try harder";
+
+    }
+
+
+      var teachers = teacher_print.bind(myObj);
+      var identify = name_printer.bind(myObj);
+      var grade = grade_calc.bind(myObj); 
+    teachers();
+    identify();
+    grade();
+
+//-------------------------------------------------------------------------
+  </script>
+
+</body>
+
+</html>
